@@ -1,27 +1,23 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:sample_clone/core/constants/color_constants.dart';
 import 'package:sample_clone/core/constants/image_constants.dart';
 import 'package:sample_clone/core/themes/app_font_styles.dart';
-import 'package:sample_clone/core/themes/app_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
+import 'package:sample_clone/view/global_widgets/curstom_divider.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // final statusBarHeight = MediaQuery.paddingOf(context).top;
-    // AppBar appbar = AppBar(
-    //   leading: Icon(Icons.menu, size: 30),
-    //   centerTitle: true,
-    //   title: Image.asset(height: 32, width: 78, ImageConstants.logo),
-    //   actions: [
-    //     Icon(Icons.search, size: 30),
-    //     SizedBox(width: 10),
-    //     Icon(Icons.shopify_sharp, size: 30),
-    //     SizedBox(width: 16),
-    //   ],
-    // );
-    // final appBarHeight = appbar.preferredSize.height;
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedCategroy = 0;
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.menu, size: 30),
@@ -39,8 +35,105 @@ class HomeScreen extends StatelessWidget {
           children: [
             // Carousel Section
             _homeCarouselSection(),
+            SizedBox(height: 35),
+
+            // new arrivals section
+            _newArrivalsSection(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _newArrivalsSection() {
+    List<String> newArrivalsCategories = [
+      "All",
+      "Apparal",
+      "Dress",
+      "Tshirt",
+      "Bag",
+    ];
+
+    return Container(
+      child: Column(
+        children: [
+          Text(
+            "NEW ARRIVAL",
+            style: AppFontStyles.tenorSans.copyWith(fontSize: 18),
+          ),
+          CustomDivider(),
+
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(newArrivalsCategories.length, (index) {
+                  return TextButton(
+                    onPressed: () {
+                      log(index.toString());
+                      selectedCategroy = index;
+                      setState(() {});
+                    },
+                    child: Column(
+                      children: [
+                        Text(
+                          newArrivalsCategories[index],
+                          style: AppFontStyles.tenorSans.copyWith(
+                            fontSize: 14,
+                            color:
+                                selectedCategroy == index
+                                    ? ColorConstants.black
+                                    : ColorConstants.mediumGrey,
+                          ),
+                        ),
+                        SizedBox(height: 6),
+                        if (selectedCategroy == index)
+                          Transform.rotate(
+                            angle: 180,
+                            child: Container(
+                              height: 6,
+                              width: 6,
+                              color: Colors.orange,
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ),
+          GridView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 4,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisExtent: 260,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) => Container(color: Colors.red),
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 10,
+            children: [
+              Text(
+                "EXPLORE MORE",
+                style: AppFontStyles.tenorSans.copyWith(fontSize: 18),
+              ),
+              Icon(Icons.arrow_forward_outlined),
+            ],
+          ),
+          SizedBox(height: 50),
+
+          CustomDivider(),
+        ],
       ),
     );
   }
@@ -59,12 +152,12 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            "Luxury\n    Fashion\n& Accessories",
+            "LUXURY\n    FASHION\n& ACCESSORIES",
             style: AppFontStyles.bodoniModa.copyWith(
               fontSize: 38,
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
-              color: Color(0xff333333),
+              color: ColorConstants.darkGrey,
             ),
           ),
           SizedBox(height: 167),
@@ -75,7 +168,7 @@ class HomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
             child: Text(
-              "Explore Collection",
+              "EXPLORE COLLECTION",
               style: AppFontStyles.tenorSans.copyWith(
                 fontSize: 14,
                 color: Colors.white,
