@@ -39,9 +39,43 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // new arrivals section
             _newArrivalsSection(),
+            // brand partners Section
+            brandPartnersSection(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget brandPartnersSection() {
+    List<String> brandLogos = [
+      ImageConstants.gucciBrand,
+      ImageConstants.burberryBrand,
+
+      ImageConstants.bossLogoBrand,
+      ImageConstants.catierBrand,
+      ImageConstants.pradaBrand,
+      ImageConstants.tiffanyBrand,
+    ];
+    return Column(
+      children: [
+        CustomDivider(),
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 30,
+          runSpacing: 30,
+          children: List.generate(
+            brandLogos.length,
+            (index) => Image.asset(
+              width: 100,
+              height: 80,
+              fit: BoxFit.contain,
+              brandLogos[index],
+            ),
+          ),
+        ),
+        CustomDivider(),
+      ],
     );
   }
 
@@ -116,7 +150,28 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),
-            itemBuilder: (context, index) => Container(color: Colors.red),
+            itemBuilder:
+                (context, index) => Column(
+                  children: [
+                    Expanded(
+                      child: Image.network(
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        "https://images.pexels.com/photos/4456815/pexels-photo-4456815.jpeg",
+                      ),
+                    ),
+                    SizedBox(height: 11),
+                    Text(
+                      textAlign: TextAlign.center,
+                      "21WN reversible angora cardigan",
+                      style: AppFontStyles.tenorSans.copyWith(fontSize: 12),
+                    ),
+                    Text(
+                      "\$120",
+                      style: AppFontStyles.tenorSans.copyWith(fontSize: 15),
+                    ),
+                  ],
+                ),
           ),
           SizedBox(height: 20),
           Row(
@@ -131,8 +186,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           SizedBox(height: 50),
-
-          CustomDivider(),
         ],
       ),
     );
