@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sample_clone/core/constants/image_constants.dart';
+import 'package:sample_clone/routes.dart';
 import 'package:sample_clone/view/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,10 +16,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => HomeScreen()),
+      // );
+
+      Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     });
 
     super.initState();

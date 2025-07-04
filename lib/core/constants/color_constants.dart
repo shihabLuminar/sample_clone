@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColorConstants {
   static const Color darkGrey = Color(0xff333333);
   static const Color mediumGrey = Color(0xff888888);
+  static const Color lightGrey = Color(0xffC4C4C4);
 
   static const Color error = Colors.red;
   static const Color success = Colors.green;

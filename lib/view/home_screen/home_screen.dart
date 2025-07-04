@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:sample_clone/core/constants/color_constants.dart';
 import 'package:sample_clone/core/constants/image_constants.dart';
 import 'package:sample_clone/core/themes/app_font_styles.dart';
+import 'package:sample_clone/routes.dart';
 
 import 'package:sample_clone/view/global_widgets/curstom_divider.dart';
+import 'package:sample_clone/view/global_widgets/custom_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,17 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.menu, size: 30),
-        centerTitle: true,
-        title: Image.asset(height: 32, width: 78, ImageConstants.logo),
-        actions: [
-          Icon(Icons.search, size: 30),
-          SizedBox(width: 10),
-          Icon(Icons.shopify_sharp, size: 30),
-          SizedBox(width: 16),
-        ],
-      ),
+      appBar: CustomAppbar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -214,17 +206,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SizedBox(height: 167),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.black38,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Text(
-              "EXPLORE COLLECTION",
-              style: AppFontStyles.tenorSans.copyWith(
-                fontSize: 14,
-                color: Colors.white,
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.productsScreen);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.black38,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Text(
+                "EXPLORE COLLECTION",
+                style: AppFontStyles.tenorSans.copyWith(
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
