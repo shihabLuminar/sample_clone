@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_clone/routes.dart';
 import 'package:sample_clone/view/home_screen/home_screen.dart';
-import 'package:sample_clone/view/products_screen.dart/products_screen.dart';
+import 'package:sample_clone/view/products_screen/products_screen.dart';
 import 'package:sample_clone/view/splash_screen/splash_screen.dart';
 
 //shihab
