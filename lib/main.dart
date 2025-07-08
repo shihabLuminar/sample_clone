@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_clone/routes.dart';
 import 'package:sample_clone/view/home_screen/home_screen.dart';
+import 'package:sample_clone/view/prdouct_details_screen/products_details_scree.dart';
 import 'package:sample_clone/view/products_screen/products_screen.dart';
 import 'package:sample_clone/view/splash_screen/splash_screen.dart';
 
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         AppRoutes.homeScreen: (context) => const HomeScreen(),
         AppRoutes.productsScreen: (context) => const ProductsScreen(),
+        AppRoutes.productsDetailsScreen:
+            (context) => const ProductsDetailsScreen(),
       },
     );
   }

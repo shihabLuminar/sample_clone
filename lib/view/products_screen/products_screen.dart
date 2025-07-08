@@ -57,7 +57,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 itemBuilder:
                     (context, index) => ListViewCard(
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.splashScreen);
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.productsDetailsScreen,
+                          arguments: index,
+                        );
                       },
                       name: DummyDb.products[index]["name"],
                       description: DummyDb.products[index]["descriptoin"],
